@@ -1,0 +1,64 @@
+---
+#  Niko Sarcevic
+#  nikolina.sarcevic@gmail.com
+#  github.com/nikosarcevic
+#  ----------
+
+#  Fiducial values of the cosmological parameters.
+#  For more information check LSST DESC SRD paper
+#  (https://arxiv.org/abs/1809.01669) or CosmoLike
+#  https://github.com/CosmoLike/DESC_SRD.
+
+#  Cosmological parameters fiducial values
+#  used in the analysis. Note that the order
+#  of the parameters is important. Consult
+#  the auxiliary_parameters.yaml in this dir.
+fiducial_values:
+  omega_m: 0.3156  # Matter density fraction (dark matter + baryonic).
+  sigma_8: 0.831  # Variance of matter density perturbations at an 8 Mpc/h scale.
+  n_s: 0.9645  # Primordial scalar perturbation spectral index.
+  w_0: -1.  # First order term of dark energy equation.
+  w_a: 0.  # Second order term of dark energy equation.
+  omega_b: 0.0491685  # Baryonic matter density fraction.
+  h: 0.6727  # Hubble constant divided by 100 km/s/Mpc; dimensionless.
+
+#  Cosmological parameters priors used in the analysis
+#  prior = 1 / sigma^2
+
+gaussian_priors:
+  omega_m: 108.507  # 1 / (0.15 * 0.64) ** 2
+  sigma_8: 61.035  # 1 / (0.2 * 0.64) ** 2
+  n_s: 244.141 # 1 / (0.1 * 0.64) ** 2
+  w_0: 9.766  # 1 / (0.5 * 0.64) ** 2
+  w_a: 1.4445  # 1 / (1.3 * 0.64) ** 2
+  omega_b: 97656.25  # 1 / (0.005 * 0.64) ** 2
+  h: 156.25  # 1 / (0.125 * 0.64) ** 2
+
+fiducial_sigma:  # taken from CosmoLike https://github.com/CosmoLike/DESC_SRD/blob/f3b44070e40cbdc1a459e07a1a8eb31d2608af6f/cosmolike_libs.py#L227
+  omega_m: 0.02
+  sigma_8: 0.02
+  n_s: 0.01
+  w_0: 0.03
+  w_a: 0.04
+  omega_b: 0.002
+  h: 0.02
+  mu_0: 0.1
+  sigma_0: 0.1
+
+gaussian_priors_old:  # these values are from the SRD paper, but it is not what is actually used in CosmoLike
+  omega_m: 25.  # 1 / 0.2 ** 2)
+  sigma_8: 51.0204  # 1 / 0.14 ** 2
+  n_s: 156.25  # 1 / 0.08 ** 2
+  w_0: 1.5625  # 1 / 0.8 ** 2
+  w_a: 0.25  # 1 / 2. ** 2
+  omega_b: 27777.7778  # 1 / 0.006 ** 2
+  h: 251.9526  # 1 / 0.063   ** 2
+
+#  Misc parameters used in the pipeline
+misc:
+  omega_c: 0.2664  # Cold dark matter density fraction.
+  h_0: 76.27  # Hubble parameter; in km/s/Mpc
+  c: 299792.459  # speed of light in vacuum; in km/s
+  mu_0: 0.
+  sigma_0: 0.
+...
