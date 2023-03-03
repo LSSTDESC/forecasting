@@ -1,0 +1,106 @@
+---
+#  Niko Sarcevic
+#  nikolina.sarcevic@gmail.com
+#  github.com/nikosarcevic
+#  ----------
+
+#  LSST DESC survey parameters
+sky:
+  full_sky: 41252.9612  # full sky in square degrees
+  lsst_sky: 1800  # LSST sky coverage; in square degrees
+  frac_sky: 0.4363  # fraction of the sky covered by LSST
+
+#  LSST DESC SRD (Science Requirement Document)
+#  redshift distribution parameters. Used to generate
+#  the Smail type redshift distribution:
+#  dN / dz = z ^ gamma * exp([ - (z / z0) ^ alpha]
+#  where z is the redshift. For more information
+#  check https://arxiv.org/abs/1809.01669 (SRD paper)
+lens_sample:  # lens galaxy sample parameters
+  year_1:  # year 1 lens sample parameters
+    i_lim: 24.1  # limiting magnitude
+    sigma_z: 0.03  # photo-z scatter (sigma_z = 0.03 (1 + z))
+    n_tomo_bins: 5  # number of tomographic bins
+    z_start: 0.2  # start of the lens bin redshift range (z_start < z z_stop)
+    z_stop: 1.2  # end value of the lens bin range (z_start < z < z_stop)
+    z_spacing: 0.2  # tomographic bin spacing
+    gamma: 2.  # power law index of the prefactor (check eq.5 in the SRD paper)
+    alpha: 0.94  # power law index in the exponent (check eq. 5 in the SRD paper)
+    z0: 0.26  # pivot redshift (check eq. 5 in the SRD paper)
+    n_bar: 18.  # ask supranta
+  year_10:  # year 10 lens sample parameters
+    i_lim: 25.3  # limiting magnitude
+    sigma_z: 0.03  # photo-z scatter (sigma_z = 0.03 * (1 + z))
+    n_tomo_bins: 10  # number of tomographic bins
+    z_start: 0.2  # start of the lens bin redshift range (z_start < z z_stop)
+    z_stop: 1.2  # end value of the lens bin redshift range (z_start < z < z_stop)
+    z_spacing: 0.1  # tomographic bin spacing
+    gamma: 2.  # power law index of the prefactor (check eq. 5 in the SRD paper)
+    alpha: 0.90  # power law index in the exponent (check eq. 5 in the SRD paper)
+    z0: 0.28  # pivot redshift (check eq. 5 in the SRD paper)
+    n_bar: 48.  # number density per arcmin^2
+
+source_sample:  # source galaxy sample parameters
+  year_1:  # year 1 source sample parameters
+    r_lim: 27.  # limiting magnitude #### 27 is what it should be trying 25.3 now
+    sigma_z: 0.05  # photo-z scatter (sigma_z = 0.05 * (1 + z))
+    n_tomo_bins: 5  # number of tomographic bins (equal number of galaxies per bin)
+    gamma: 2.  # power law index of the prefactor (check eq. 5 in the SRD paper)
+    alpha: 0.78  # power law index in the exponent (check eq. 5 in the SRD paper)
+    z0: 0.13  # pivot redshift (check eq. 5 in the SRD paper)
+    mean_eff_z: 0.85  # mean effective redshift
+    n_bar: 10.  # number density per arcmin^2
+  year_10:  # year 10 source sample parameters
+    r_lim: 27.  # limiting magnitude
+    sigma_z: 0.05  # photo-z scatter (sigma_z = 0.05 * (1 + z))
+    n_tomo_bins: 5  # number of tomographic bins (equal number of galaxies per bin)
+    gamma: 2.  # power law index of the prefactor (check eq. 5 in the SRD paper)
+    alpha: 0.68  # power law index in the exponent (check eq. 5 in the SRD paper)
+    z0: 0.11  # pivot redshift
+    mean_eff_z: 1.05  # mean effective redshift
+    n_bar: 27.  # number density per arcmin^2
+
+#  Information about the LSST DESC SRD data vectors.
+#  More details can be found in the tarball
+#  https://zenodo.org/record/1409816#.Y7f4iy-l2gQ
+covariance_matrix:
+  data_points:
+    year_1:
+      cosmic_shear: 300
+      galaxy-galaxy_lensing: 140
+      galaxy_clustering: 100
+      3x2pt: 540
+      cluster_number_counts: 15
+      cluster_weak_lensing: 150
+      total: 705
+    year_10:
+      cosmic_shear: 300
+      galaxy-galaxy_lensing: 500
+      galaxy_clustering: 200
+      3x2pt: 1000
+      cluster_number_counts: 20
+      cluster_weak_lensing: 275
+      total: 1295
+  ell_bins:
+    year_1:
+      cosmic_shear: 20
+      galaxy-galaxy_lensing: 20
+      galaxy_clustering: 20
+      cluster_weak_lensing: 5
+    year_10:
+      cosmic_shear: 20
+      galaxy-galaxy_lensing: 20
+      galaxy_clustering: 20
+      cluster_weak_lensing: 5
+  cls:
+    year_1:
+      cosmic_shear: 15
+      galaxy-galaxy_lensing: 7
+      galaxy_clustering: 5
+    year_10:
+      cosmic_shear: 15
+      galaxy-galaxy_lensing: 25
+      galaxy_clustering: 10
+
+...
+
