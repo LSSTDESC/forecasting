@@ -59,7 +59,7 @@ for i, zmin in enumerate(bin_low_zs):
     nz_bin = gaussian_filter(nz_bin, sig_z*(1+zmid)/dz)
     
     # galaxy clustering CCL tracer for computing mock datavector
-    galaxy_tracer_bin = ccl.NumberCountsTracer(cosmo, has_rsd=False, dndz=(z,nz_bin), bias=(zmids,linear_bias), mag_bias=None)
+    galaxy_tracer_bin = ccl.NumberCountsTracer(cosmo, has_rsd=False, dndz=(z,nz_bin), bias=(z,linear_bias[i]*np.ones(len(z))), mag_bias=None)
     tracers.append(galaxy_tracer_bin)
     
     # galaxy clustering SACC tracer for saving to file later
@@ -67,9 +67,9 @@ for i, zmin in enumerate(bin_low_zs):
              quantity='galaxy_density',  # Quantity
              spin=0,  # Spin
              z=z,  # z
-             nz=nz_bin)  # nz
+             nz=nz_bin)  # nz 
     
-ell_unbinned = np.arange(20, 15002)
+ell_unbinned = np.arange(0, 15001) # starting this at 0 is important for firecrown likelihood
 n_ell_unbinned = len(ell_unbinned)
 # window functions in ell: assume tophat
 ell_windows_tophat = np.zeros([n_ell_unbinned, nbin_ell])
@@ -103,4 +103,4 @@ cov = np.loadtxt('/Users/heatherp/Documents/DESC/cosmolike_inputs_for_3x2_used_f
 
 s.add_covariance(cov) # deal with mask?
 s.save_fits("lsst_y1_desc_srd_sacc.fits", overwrite=True)
-print("saved in sacc format as lsst_y1_desc_srd_sacc.fits")
+print("saved galaxy clustering angular power spectra in sacc format: lsst_y1_desc_srd_sacc.fits")
